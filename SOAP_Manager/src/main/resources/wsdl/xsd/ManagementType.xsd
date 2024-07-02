@@ -1,0 +1,101 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/ManagementService"
+           xmlns:tns="http://www.wstutorial.com/ws/ManagementService">
+
+    <!-- Manager complex type -->
+    <xs:complexType name="Manager">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="email" type="xs:string" />
+            <xs:element name="phoneNumber" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Requests -->
+
+    <xs:element name="createManagerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="managerType" type="tns:Manager" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createManagerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+
+    <xs:element name="getManagerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getManagersRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Responses -->
+    <xs:element name="getManagerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="manager" type="tns:Manager"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getManagersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="managers" type="tns:Manager" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="updateManagerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="managerType" type="tns:Manager" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateManagerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteManagerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteManagerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

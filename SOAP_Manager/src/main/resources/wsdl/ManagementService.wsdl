@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ManagementService"
+             targetNamespace="http://www.wstutorial.com/ws/ManagementService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.wstutorial.com/ws/ManagementService"
+             xmlns:managerType="http://www.wstutorial.com/ws/ManagementService"
+             xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+
+    <types>
+        <xs:schema>
+            <xs:import schemaLocation="xsd/ManagementType.xsd" namespace="http://www.wstutorial.com/ws/ManagementService"/>
+        </xs:schema>
+
+        <xs:schema>
+            <xs:import schemaLocation="../../../../../SOAP_Common/src/main/resources/wsdl/xsd/StatusCode.xsd"
+                       namespace="http://www.wstutorial.com/ws/CommonService"/>
+        </xs:schema>
+
+    </types>
+
+    <!-- Messages -->
+    <message name="updateManagerRequestMsg">
+        <part name="params" element="managerType:updateManagerRequest"/>
+    </message>
+    <message name="updateManagerResponseMsg">
+        <part name="params" element="managerType:updateManagerResponse"/>
+    </message>
+
+    <message name="createManagerRequestMsg">
+        <part name="params" element="managerType:createManagerRequest"/>
+    </message>
+    <message name="createManagerResponseMsg">
+        <part name="params" element="managerType:createManagerResponse"/>
+    </message>
+
+    <message name="deleteManagerRequestMsg">
+        <part name="params" element="managerType:deleteManagerRequest"/>
+    </message>
+    <message name="deleteManagerResponseMsg">
+        <part name="params" element="managerType:deleteManagerResponse"/>
+    </message>
+
+    <message name="getManagerRequestMsg">
+        <part name="params" element="managerType:getManagerRequest"/>
+    </message>
+    <message name="getManagerResponseMsg">
+        <part name="params" element="managerType:getManagerResponse"/>
+    </message>
+
+    <message name="getManagersRequestMsg">
+        <part name="params" element="managerType:getManagersRequest"/>
+    </message>
+    <message name="getManagersResponseMsg">
+        <part name="params" element="managerType:getManagersResponse"/>
+    </message>
+
+
+    <message name="sendStatusMsg">
+        <part name="params" element="common:CodeResponse"/>
+    </message>
+
+
+    <!-- Port Type -->
+    <portType name="ManagementServicePortType">
+        <operation name="updateManager">
+            <input message="tns:updateManagerRequestMsg"/>
+            <output message="tns:sendStatusMsg"/>
+        </operation>
+        <operation name="createManager">
+            <input message="tns:createManagerRequestMsg"/>
+            <output message="tns:sendStatusMsg"/>
+        </operation>
+        <operation name="deleteManager">
+            <input message="tns:deleteManagerRequestMsg"/>
+            <output message="tns:sendStatusMsg"/>
+        </operation>
+        <operation name="getManager">
+            <input message="tns:getManagerRequestMsg"/>
+            <output message="tns:getManagerResponseMsg"/>
+        </operation>
+        <operation name="getManagers">
+            <input message="tns:getManagersRequestMsg"/>
+            <output message="tns:getManagersResponseMsg"/>
+        </operation>
+    </portType>
+
+    <!-- Binding -->
+    <binding name="ManagementServiceSOAPBinding" type="tns:ManagementServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="updateManager">
+            <soap:operation soapAction="updateManager"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="createManager">
+            <soap:operation soapAction="createManager"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="deleteManager">
+            <soap:operation soapAction="deleteManager"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getManager">
+            <soap:operation soapAction="getManager"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getManagers">
+            <soap:operation soapAction="getManagers"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <!-- Service -->
+    <service name="ManagementService">
+        <port name="ManagementServicePort" binding="tns:ManagementServiceSOAPBinding">
+            <soap:address location="http://localhost:8087/wsdlfirst/ManagementService"/>
+        </port>
+    </service>
+</definitions>
