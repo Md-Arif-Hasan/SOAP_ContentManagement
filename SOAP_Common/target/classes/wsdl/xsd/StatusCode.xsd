@@ -1,0 +1,31 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/CommonService"
+           xmlns:tns="http://www.wstutorial.com/ws/CommonService">
+
+    <!-- Define other elements and types as needed -->
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="fault" type="xs:string" />
+
+    <xs:element name="StatusCodeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:StatusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="StatusCode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="200"/>
+            <xs:enumeration value="201"/>
+            <xs:enumeration value="204"/>
+            <xs:enumeration value="404"/>
+            <xs:enumeration value="500"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

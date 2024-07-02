@@ -1,0 +1,26 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://contentservice.com/contentType"
+           xmlns="http://contentservice.com/contentType">
+
+    <xs:complexType name="contentType">
+        <xs:sequence>
+            <xs:element name="ContentNumber" type="xs:long"/>
+            <xs:element name="Type" type="xs:string"/>
+            <xs:element name="Headline" type="xs:string"/>
+            <xs:element name="ContentText" type="xs:string"/>
+            <!-- Add more elements as needed -->
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="contentInsights">
+        <xs:sequence>
+            <xs:element name="ContentNumber" type="xs:long"/>
+            <xs:element name="Reach" type="xs:decimal"/>
+            <xs:element name="Engagement" type="xs:decimal"/>
+            <xs:element name="Clicks" type="xs:decimal"/>
+            <!-- Add more elements as needed -->
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/CommonService"
+           xmlns:tns="http://www.wstutorial.com/ws/CommonService">
+
+
+    <xs:element name="fault" type="xs:string" />
+
+    <xs:element name="StatusCodeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
