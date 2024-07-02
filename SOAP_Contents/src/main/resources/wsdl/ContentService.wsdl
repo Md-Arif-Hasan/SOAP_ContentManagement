@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ContentService"
+			 targetNamespace="http://www.wstutorial.com/ws/ContentService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/ContentService"
+			 xmlns:contentType="http://www.wstutorial.com/ws/ContentService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+
+	<types>
+		<xs:schema>
+			<xs:import schemaLocation="xsd/ContentType.xsd" namespace="http://www.wstutorial.com/ws/ContentService"/>
+		</xs:schema>
+
+		<xs:schema>
+			<xs:import schemaLocation="../../../../../SOAP_Common/src/main/resources/wsdl/xsd/StatusCode.xsd"
+					   namespace="http://www.wstutorial.com/ws/CommonService"/>
+		</xs:schema>
+
+	</types>
+
+	<!-- Messages -->
+	<message name="updateContentRequestMsg">
+		<part name="params" element="contentType:updateContentRequest"/>
+	</message>
+	<message name="updateContentResponseMsg">
+		<part name="params" element="contentType:updateContentResponse"/>
+	</message>
+
+	<message name="createContentRequestMsg">
+		<part name="params" element="contentType:createContentRequest"/>
+	</message>
+	<message name="createContentResponseMsg">
+		<part name="params" element="contentType:createContentResponse"/>
+	</message>
+
+	<message name="deleteContentRequestMsg">
+		<part name="params" element="contentType:deleteContentRequest"/>
+	</message>
+	<message name="deleteContentResponseMsg">
+		<part name="params" element="contentType:deleteContentResponse"/>
+	</message>
+
+	<message name="getContentRequestMsg">
+		<part name="params" element="contentType:getContentRequest"/>
+	</message>
+	<message name="getContentResponseMsg">
+		<part name="params" element="contentType:getContentResponse"/>
+	</message>
+
+	<message name="getContentsRequestMsg">
+		<part name="params" element="contentType:getContentsRequest"/>
+	</message>
+	<message name="getContentsResponseMsg">
+		<part name="params" element="contentType:getContentsResponse"/>
+	</message>
+
+
+	<message name="sendStatusMsg">
+		<part name="params" element="common:StatusCodeResponse"/>
+	</message>
+
+
+	<!-- Port Type -->
+	<portType name="ContentServicePortType">
+		<operation name="updateContent">
+			<input message="tns:updateContentRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="createContent">
+			<input message="tns:createContentRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="deleteContent">
+			<input message="tns:deleteContentRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="getContent">
+			<input message="tns:getContentRequestMsg"/>
+			<output message="tns:getContentResponseMsg"/>
+		</operation>
+		<operation name="getContents">
+			<input message="tns:getContentsRequestMsg"/>
+			<output message="tns:getContentsResponseMsg"/>
+		</operation>
+	</portType>
+
+	<!-- Binding -->
+	<binding name="ContentServiceSOAPBinding" type="tns:ContentServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="updateContent">
+			<soap:operation soapAction="updateContent"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="createContent">
+			<soap:operation soapAction="createContent"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="deleteContent">
+			<soap:operation soapAction="deleteContent"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="getContent">
+			<soap:operation soapAction="getContent"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="getContents">
+			<soap:operation soapAction="getContents"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+
+	<!-- Service -->
+	<service name="ContentService">
+		<port name="ContentServicePort" binding="tns:ContentServiceSOAPBinding">
+			<soap:address location="http://localhost:8090/wsdlfirst/ContentService"/>
+		</port>
+	</service>
+</definitions>

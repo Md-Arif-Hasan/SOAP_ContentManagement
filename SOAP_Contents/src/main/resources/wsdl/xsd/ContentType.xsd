@@ -1,0 +1,100 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/ContentService"
+           xmlns:tns="http://www.wstutorial.com/ws/ContentService">
+
+    <!-- Content complex type -->
+    <xs:complexType name="Content">
+        <xs:all>
+            <xs:element name="serialNo" type="xs:long" />
+            <xs:element name="headline" type="xs:string" />
+            <xs:element name="description" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Requests -->
+
+    <xs:element name="createContentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contentType" type="tns:Content" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createContentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+
+    <xs:element name="getContentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getContentsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Responses -->
+    <xs:element name="getContentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="content" type="tns:Content"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getContentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contents" type="tns:Content" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="updateContentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contentType" type="tns:Content" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateContentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteContentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteContentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
