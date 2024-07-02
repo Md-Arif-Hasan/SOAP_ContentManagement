@@ -1,0 +1,100 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/BlogpostService"
+           xmlns:tns="http://www.wstutorial.com/ws/BlogpostService">
+
+    <!-- Blogpost complex type -->
+    <xs:complexType name="Blogpost">
+        <xs:all>
+            <xs:element name="blogNo" type="xs:long" />
+            <xs:element name="blogHeadline" type="xs:string" />
+            <xs:element name="blogDescription" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Requests -->
+
+    <xs:element name="createBlogpostRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="BlogpostType" type="tns:Blogpost" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createBlogpostResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+
+    <xs:element name="getBlogpostRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="blogNo" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBlogpostsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Responses -->
+    <xs:element name="getBlogpostResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="blogpost" type="tns:Blogpost"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBlogpostsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="blogposts" type="tns:Blogpost" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="updateBlogpostRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="BlogpostType" type="tns:Blogpost" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateBlogpostResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteBlogpostRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="blogNo" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteBlogpostResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="BlogpostService"
+			 targetNamespace="http://www.wstutorial.com/ws/BlogpostService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/BlogpostService"
+			 xmlns:userType="http://www.wstutorial.com/ws/BlogpostService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+
+	<types>
+		<xs:schema>
+			<xs:import schemaLocation="xsd/BlogpostType.xsd" namespace="http://www.wstutorial.com/ws/BlogpostService"/>
+		</xs:schema>
+
+		<xs:schema>
+			<xs:import schemaLocation="../../../../../SOAP_Common/src/main/resources/wsdl/xsd/StatusCode.xsd"
+					   namespace="http://www.wstutorial.com/ws/CommonService"/>
+		</xs:schema>
+
+	</types>
+
+	<!-- Messages -->
+	<message name="updateBlogpostRequestMsg">
+		<part name="params" element="userType:updateBlogpostRequest"/>
+	</message>
+	<message name="updateBlogpostResponseMsg">
+		<part name="params" element="userType:updateBlogpostResponse"/>
+	</message>
+
+	<message name="createBlogpostRequestMsg">
+		<part name="params" element="userType:createBlogpostRequest"/>
+	</message>
+	<message name="createBlogpostResponseMsg">
+		<part name="params" element="userType:createBlogpostResponse"/>
+	</message>
+
+	<message name="deleteBlogpostRequestMsg">
+		<part name="params" element="userType:deleteBlogpostRequest"/>
+	</message>
+	<message name="deleteBlogpostResponseMsg">
+		<part name="params" element="userType:deleteBlogpostResponse"/>
+	</message>
+
+	<message name="getBlogpostRequestMsg">
+		<part name="params" element="userType:getBlogpostRequest"/>
+	</message>
+	<message name="getBlogpostResponseMsg">
+		<part name="params" element="userType:getBlogpostResponse"/>
+	</message>
+
+	<message name="getBlogpostsRequestMsg">
+		<part name="params" element="userType:getBlogpostsRequest"/>
+	</message>
+	<message name="getBlogpostsResponseMsg">
+		<part name="params" element="userType:getBlogpostsResponse"/>
+	</message>
+
+
+	<message name="sendStatusMsg">
+		<part name="params" element="common:CodeResponse"/>
+	</message>
+
+
+	<!-- Port Type -->
+	<portType name="BlogpostServicePortType">
+		<operation name="updateBlogpost">
+			<input message="tns:updateBlogpostRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="createBlogpost">
+			<input message="tns:createBlogpostRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="deleteBlogpost">
+			<input message="tns:deleteBlogpostRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="getBlogpost">
+			<input message="tns:getBlogpostRequestMsg"/>
+			<output message="tns:getBlogpostResponseMsg"/>
+		</operation>
+		<operation name="getBlogposts">
+			<input message="tns:getBlogpostsRequestMsg"/>
+			<output message="tns:getBlogpostsResponseMsg"/>
+		</operation>
+	</portType>
+
+	<!-- Binding -->
+	<binding name="BlogpostServiceSOAPBinding" type="tns:BlogpostServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="updateBlogpost">
+			<soap:operation soapAction="updateBlogpost"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="createBlogpost">
+			<soap:operation soapAction="createBlogpost"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="deleteBlogpost">
+			<soap:operation soapAction="deleteBlogpost"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="getBlogpost">
+			<soap:operation soapAction="getBlogpost"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="getBlogposts">
+			<soap:operation soapAction="getBlogposts"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+
+	<!-- Service -->
+	<service name="BlogpostService">
+		<port name="BlogpostServicePort" binding="tns:BlogpostServiceSOAPBinding">
+			<soap:address location="http://localhost:8081/wsdlfirst/BlogpostService"/>
+		</port>
+	</service>
+</definitions>
