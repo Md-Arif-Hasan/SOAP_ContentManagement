@@ -29,10 +29,10 @@ This Content Management System is a SOAP-based application designed for efficien
 To install and run the Content Management System, follow these steps:
 
 1. **Clone the Repository**:
-git clone https://github.com/Md-Arif-Hasan/SOAP_ContentManagement.git
-cd SOAP_ContentManagement
+- git clone https://github.com/Md-Arif-Hasan/SOAP_ContentManagement.git
+- cd SOAP_ContentManagement
 
-3. **Load Each Service into Your IDE**:
+2. **Load Each Service into Your IDE**:
 - Open your preferred IDE (e.g., IntelliJ IDEA).
 - Load each folder (SOAP_Users, SOAP_Contents, SOAP_ManageContent etc.) as distinct projects.
 
