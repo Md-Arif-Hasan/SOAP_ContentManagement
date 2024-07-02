@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="UserService"
+			 targetNamespace="http://www.wstutorial.com/ws/UserService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/UserService"
+			 xmlns:userType="http://www.wstutorial.com/ws/UserService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+
+	<types>
+		<xs:schema>
+			<xs:import schemaLocation="xsd/UserType.xsd" namespace="http://www.wstutorial.com/ws/UserService"/>
+		</xs:schema>
+
+		<xs:schema>
+			<xs:import schemaLocation="../../../../../SOAP_Common/src/main/resources/wsdl/xsd/StatusCode.xsd"
+					   namespace="http://www.wstutorial.com/ws/CommonService"/>
+		</xs:schema>
+
+	</types>
+
+	<!-- Messages -->
+	<message name="updateUserRequestMsg">
+		<part name="params" element="userType:updateUserRequest"/>
+	</message>
+	<message name="updateUserResponseMsg">
+		<part name="params" element="userType:updateUserResponse"/>
+	</message>
+
+	<message name="createUserRequestMsg">
+		<part name="params" element="userType:createUserRequest"/>
+	</message>
+	<message name="createUserResponseMsg">
+		<part name="params" element="userType:createUserResponse"/>
+	</message>
+
+	<message name="deleteUserRequestMsg">
+		<part name="params" element="userType:deleteUserRequest"/>
+	</message>
+	<message name="deleteUserResponseMsg">
+		<part name="params" element="userType:deleteUserResponse"/>
+	</message>
+
+	<message name="getUserRequestMsg">
+		<part name="params" element="userType:getUserRequest"/>
+	</message>
+	<message name="getUserResponseMsg">
+		<part name="params" element="userType:getUserResponse"/>
+	</message>
+
+	<message name="getUsersRequestMsg">
+		<part name="params" element="userType:getUsersRequest"/>
+	</message>
+	<message name="getUsersResponseMsg">
+		<part name="params" element="userType:getUsersResponse"/>
+	</message>
+
+
+	<message name="sendStatusMsg">
+		<part name="params" element="common:CodeResponse"/>
+	</message>
+
+
+	<!-- Port Type -->
+	<portType name="UserServicePortType">
+		<operation name="updateUser">
+			<input message="tns:updateUserRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="createUser">
+			<input message="tns:createUserRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="deleteUser">
+			<input message="tns:deleteUserRequestMsg"/>
+			<output message="tns:sendStatusMsg"/>
+		</operation>
+		<operation name="getUser">
+			<input message="tns:getUserRequestMsg"/>
+			<output message="tns:getUserResponseMsg"/>
+		</operation>
+		<operation name="getUsers">
+			<input message="tns:getUsersRequestMsg"/>
+			<output message="tns:getUsersResponseMsg"/>
+		</operation>
+	</portType>
+
+	<!-- Binding -->
+	<binding name="UserServiceSOAPBinding" type="tns:UserServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="updateUser">
+			<soap:operation soapAction="updateUser"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="createUser">
+			<soap:operation soapAction="createUser"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="deleteUser">
+			<soap:operation soapAction="deleteUser"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="getUser">
+			<soap:operation soapAction="getUser"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+		<operation name="getUsers">
+			<soap:operation soapAction="getUsers"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+
+	<!-- Service -->
+	<service name="UserService">
+		<port name="UserServicePort" binding="tns:UserServiceSOAPBinding">
+			<soap:address location="http://localhost:8081/wsdlfirst/UserService"/>
+		</port>
+	</service>
+</definitions>
