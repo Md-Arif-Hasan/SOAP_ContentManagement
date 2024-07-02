@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="LogService"
+			 targetNamespace="http://www.wstutorial.com/ws/LogService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/LogService"
+			 xmlns:userType="http://www.wstutorial.com/ws/LogService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+
+	<types>
+		<xs:schema>
+			<xs:import schemaLocation="xsd/Log.xsd" namespace="http://www.wstutorial.com/ws/LogService"/>
+		</xs:schema>
+
+		<xs:schema>
+			<xs:import schemaLocation="../../../../../SOAP_Common/src/main/resources/wsdl/xsd/StatusCode.xsd"
+					   namespace="http://www.wstutorial.com/ws/CommonService"/>
+		</xs:schema>
+
+	</types>
+
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:StatusCodeResponse" />
+	</message>
+
+	<message name="createLogRequestMsg">
+		<part name="params" element="log:logsRequest"/>
+	</message>
+
+	<message name="logFault">
+		<part name="params" element="common:fault" />
+	</message>
+
+
+	<portType name="LogServicePortType">
+		<operation name="createLog">
+			<input message="tns:createLogRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:logFault"/>
+		</operation>
+	</portType>
+
+	<binding name="logServiceSOAPBinding" type="tns:LogServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="createLog">
+			<soap:operation soapAction="createLog" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="LogService">
+		<port name="LogServicePort" binding="tns:logServiceSOAPBinding">
+			<soap:address location="http://localhost:8010/ws/logService" />
+		</port>
+	</service>
+</definitions>
