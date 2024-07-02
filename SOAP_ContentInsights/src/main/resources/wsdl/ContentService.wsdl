@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="someName"
+	targetNamespace="http://www.wstutorial.com/ws/ContentService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/ContentService"
+			xmlns:contentType="http://contentservice.com/contentType"
+
+
+>
+
+	<types>
+		<xs:schema targetNamespace="http://www.wstutorial.com/ws/ContentService">
+			<xs:import schemaLocation="xsd/ContentType.xsd" namespace="http://contentservice.com/contentType"/>
+
+
+			<!-- Define request and response types for operations -->
+			<xs:element name="CheckAvailabilityRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ContentProductionStartDate" type="xs:date"/>
+						<xs:element name="ContentProductionEndDate" type="xs:date"/>
+						<!-- Add more elements as needed -->
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CheckAvailabilityResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AvailableContents" type="contentType:contentType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+
+			<xs:element name="InsightsRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ContentNumber" type="xs:long"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="InsightsResponse">
+				<xs:complexType>
+						<xs:element name="InsightsInfo" type="contentType:contentInsights"/>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="tutorialFault" type="xs:long" />
+		</xs:schema>
+	</types>
+
+	<!-- Messages -->
+	<message name="CheckAvailabilityRequestMsg">
+		<part name="params" element="tns:CheckAvailabilityRequest"/>
+	</message>
+	<message name="CheckAvailabilityResponseMsg">
+		<part name="params" element="tns:CheckAvailabilityResponse"/>
+	</message>
+
+	<!-- Messages -->
+	<message name="InsightsRequestMsg">
+		<part name="params" element="tns:InsightsRequest"/>
+	</message>
+	<message name="InsightsResponseMsg">
+		<part name="params" element="tns:InsightsResponse"/>
+	</message>
+
+
+
+
+
+
+	<portType name="ContentServicePortType">
+		<operation name="CheckAvailability">
+			<input message="tns:CheckAvailabilityRequestMsg"/>
+			<output message="tns:CheckAvailabilityResponseMsg"/>
+		</operation>
+
+		<operation name="CheckInsights">
+			<input message="tns:InsightsRequestMsg"/>
+			<output message="tns:InsightsResponseMsg"/>
+		</operation>
+
+	</portType>
+
+
+
+
+
+
+
+	<binding name="ContentServiceSOAPBinding" type="tns:ContentServicePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<operation name="CheckAvailability">
+			<soap:operation soapAction="checkAvailability"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="CheckInsights">
+			<soap:operation soapAction="CheckInsights"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+
+
+
+	</binding>
+	<service name="ContentService">
+		<port name="ContentServicePort" binding="tns:ContentServiceSOAPBinding">
+			<soap:address
+				location="http://localhost:8080/wsdlfirst/ContentService" />
+		</port>
+	</service>
+</definitions>
