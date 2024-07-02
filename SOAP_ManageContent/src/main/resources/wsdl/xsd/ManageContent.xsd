@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/ManageContentService"
+           xmlns:tns="http://www.wstutorial.com/ws/ManageContentService"
+            xmlns:content="http://www.wstutorial.com/ws/ContentService">
+
+
+
+    <xs:import namespace="http://www.wstutorial.com/ws/ContentService" schemaLocation="../../../../../../SOAP_Contents/src/main/resources/wsdl/xsd/ContentType.xsd"/>
+
+    <xs:complexType name="ManageContentType">
+        <xs:sequence>
+            <xs:element type="content:Content" name="content" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ManageCreateContent" type="tns:ManageContentType"/>
+
+</xs:schema>

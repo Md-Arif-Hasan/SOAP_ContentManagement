@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ManageContentService"
+             targetNamespace="http://www.wstutorial.com/ws/ManageContentService"
+             xmlns:tns="http://www.wstutorial.com/ws/ManageContentService"
+             xmlns:manageContent="http://www.wstutorial.com/ws/ManageContentService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:common="http://www.wstutorial.com/ws/CommonService"
+             xmlns:content="http://www.wstutorial.com/ws/ContentService"
+             xmlns:manager="http://www.wstutorial.com/ws/ManagementService"
+             >
+
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://www.wstutorial.com/ws/ManageContentService" schemaLocation="./xsd/ManageContent.xsd"/>
+        </xs:schema>
+        <xs:schema>
+            <xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../SOAP_Common/src/main/resources/wsdl/xsd/StatusCode.xsd"/>
+        </xs:schema>
+        <xs:schema>
+            <xs:import namespace="http://www.wstutorial.com/ws/ContentService" schemaLocation="../../../../../SOAP_Contents/src/main/resources/wsdl/xsd/ContentType.xsd"/>
+        </xs:schema>
+        <xs:schema>
+            <xs:import namespace="http://www.wstutorial.com/ws/UserService" schemaLocation="../../../../../SOAP_Users/src/main/resources/wsdl/xsd/UserType.xsd"/>
+        </xs:schema>
+
+        <xs:schema>
+            <xs:import namespace="http://www.wstutorial.com/ws/ManagementService" schemaLocation="../../../../../SOAP_Manager/src/main/resources/wsdl/xsd/ManagementType.xsd"/>
+        </xs:schema>
+
+
+        <xs:schema>
+            <xs:import namespace="http://www.wstutorial.com/ws/LogService" schemaLocation="../../../../../SOAP_Logger/src/main/resources/wsdl/xsd/Log.xsd"/>
+        </xs:schema>
+    </types>
+
+    <message name="manageContentFault">
+        <part name="params" element="common:fault" />
+    </message>
+
+    <message name="createManageContentRequestMsg">
+        <part name="params" element="manageContent:ManageCreateContent" />
+    </message>
+    <message name="createManageContentResponseMsg">
+        <part name="params" element="common:StatusCodeResponse" />
+    </message>
+
+    <message name="sendStatusMsg">
+        <part name="params" element="common:StatusCodeResponse" />
+    </message>
+
+
+
+
+    <message name="getManageContentRequestMsg">
+        <part name="params" element="content:getContentsRequest" />
+    </message>
+
+    <message name="getManageContentResponseMsg">
+        <part name="params" element="content:getContentsResponse" />
+    </message>
+
+
+
+
+
+    <portType name="ManageContentServicePortType">
+
+        <operation name="manageCreateContents">
+            <input message="tns:createManageContentRequestMsg" />
+            <output message="tns:sendStatusMsg" />
+            <fault name="fault" message="tns:manageContentFault" />
+        </operation>
+
+
+        <operation name="getContentsRequest">
+            <input message="tns:getManageContentRequestMsg" />
+            <output message="tns:getManageContentResponseMsg" />
+            <fault name="fault" message="tns:manageContentFault" />
+        </operation>
+
+
+
+    </portType>
+
+    <binding name="manageContentServiceSOAPBinding" type="tns:ManageContentServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
+        <operation name="manageCreateContents">
+            <soap:operation soapAction="manageCreateContents" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+
+
+        <operation name="getContentsRequest">
+            <soap:operation soapAction="getContentsRequest" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="fault">
+                <soap:fault name="fault" use="literal" />
+            </fault>
+        </operation>
+
+
+
+
+    </binding>
+    <service name="ManageContentService">
+        <port name="ManageContentServicePort" binding="tns:manageContentServiceSOAPBinding">
+            <soap:address location="http://localhost:8888/ws/manageContentService" />
+        </port>
+    </service>
+</definitions>
